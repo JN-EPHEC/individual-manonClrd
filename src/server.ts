@@ -1,6 +1,6 @@
 import express, { type Request, type Response } from 'express';
 import userRouter from './routes/userRoutes.js';
-import sequelize from './config/database.ts';
+import sequelize from './config/database.js';
 
 const app = express();
 const port = 3000;
@@ -18,7 +18,7 @@ app.listen(port, () => {
 function greet(name: string): string {
     return `Hello, ${name}!`;
 }
-let message = greet("Arnaud");
+let message = greet("Manon");
 console.log(message);
 
 interface Etudiant {
@@ -53,3 +53,6 @@ try {
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
+
+sequelize.sync({ force: true });
+    
