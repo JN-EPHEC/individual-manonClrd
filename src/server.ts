@@ -54,11 +54,11 @@ try {
   console.error('Unable to connect to the database:', error);
 }
 
-sequelize.sync().then((=>{
+sequelize.sync().then(()=>{
     console.log("DB synchro");
     app.listen(port, () => {
         console.log('serveur ok')
     })
-}))
+})
 
     
