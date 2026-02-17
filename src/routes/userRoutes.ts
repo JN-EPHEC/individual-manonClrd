@@ -1,18 +1,30 @@
-import { Router, type Request, type Response } from 'express';
+import { Router } from 'express';
+import User from '../models/User';
+
 const router = Router();
 
-interface User {
-    id: number;
-    name: string;
-}
+// GET /api/users → renvoie tous les utilisateurs
+router.get('/', async (req, res) => {
+    try {
+        const users = await User.findAll();
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
-const users: User[] = [
-    { id: 1, name: "Alice" },
-    { id: 2, name: "Bob" },
-];
+// POST /api/users → ajoute un utilisateur
+router.post('/', async (req, res) => {
+    try {
+        const user = await User.create({
+            nom: req.body.nom,
+            prenom: req.body.prenom
+        });
 
-router.get('/', (req: Request, res: Response) => {
-    res.json(users);
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 export default router;
