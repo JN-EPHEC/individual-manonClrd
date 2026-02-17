@@ -27,4 +27,20 @@ router.post('/', async (req, res) => {
     }
 });
 
+// DELETE /api/users/:id → supprime un utilisateur
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deleted = await User.destroy({ where: { id } });
+
+        if (deleted === 0) {
+            return res.status(404).json({ error: "Utilisateur non trouvé" });
+        }
+
+        res.json({ message: "Utilisateur supprimé" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 export default router;
