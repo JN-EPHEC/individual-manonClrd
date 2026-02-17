@@ -7,4 +7,3 @@ const sequelize = new Sequelize({
 
 export default sequelize;
 
-//test de lucas git
