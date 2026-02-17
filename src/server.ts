@@ -1,28 +1,51 @@
-import express, { type Request, type Response } from 'express';
+import express from 'express'; 
+import type { Request, Response } from 'express';
 import userRouter from './routes/userRoutes';
 import sequelize from './config/database';
+import './models/User';  //charge mon model 
+
 
 const app = express();
 const port = 3000;
 
+app.use(express.json());
 app.use('/api/users', userRouter);
 
-app.get('/',(req: Request, res: Response) => {
-    res.send('Bienvenue sur mon serveur API')
+app.get('/', (req: Request, res: Response) => {
+    res.send('Bienvenue sur mon serveur API');
 });
 
-app.listen(port, () => {
-    console.log(`Serveur lancé sur http://localhost:${port}`);
-});
+//connexion et synchro de la DB
+async function startServer() {
+    try {
+        await sequelize.authenticate();
+        console.log('Connexion OK');
 
+        await sequelize.sync({ alter: true });
+        console.log('DB synchronisée');                                                
+
+        app.listen(port, () => {                                                       
+            console.log(`Serveur lancé sur http://localhost:${port}`);
+        });
+
+    } catch (error) {
+        console.error('Erreur lors du démarrage :', error);
+    }
+    console.log(await sequelize.getQueryInterface().showAllTables());
+
+}
+
+startServer();
+
+// dit bonjour 
 function greet(name: string): string {
-    return `Hello, ${name}!`;
+    return `Hello, ${name}!`;                    
 }
 let message = greet("Manon");
 console.log(message);
 
 interface Etudiant {
-    id: number;
+    id: number;                         
     nom: string;
     prenom: string;
 }
@@ -35,10 +58,10 @@ const etudiants: Etudiant[] = [
 
 app.get('/api/data', (req: Request, res: Response) => {
     res.json(etudiants);
-})
+});
 
 app.get('/api/hello/:name', (req: Request, res: Response) => {
-    const name = req.params.name as string ;
+    const name = req.params.name;
 
     const response = {
         message: `Bonjour ${name}`,
@@ -47,18 +70,5 @@ app.get('/api/hello/:name', (req: Request, res: Response) => {
     res.json(response);
 });
 
-try {
-  sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
-
-sequelize.sync().then(()=>{
-    console.log("DB synchro");
-    app.listen(port, () => {
-        console.log('serveur ok')
-    })
-})
 
     

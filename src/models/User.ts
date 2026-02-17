@@ -1,16 +1,16 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
+import { Sequelize, DataTypes, Model } from 'sequelize';
+import sequelize from '../config/database';
 
 class User extends Model {}
 
 User.init(
   {
     // Model attributes are defined here
-    firstName: {
+    prenom: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastName: {
+    nom: {
       type: DataTypes.STRING,
       // allowNull defaults to true
     },
