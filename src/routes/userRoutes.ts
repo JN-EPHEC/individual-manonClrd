@@ -16,16 +16,32 @@ router.get('/', async (req, res) => {
 // POST /api/users → ajoute un utilisateur
 router.post('/', async (req, res) => {
     try {
-        const user = await User.create({
-            nom: req.body.nom,
-            prenom: req.body.prenom
-        });
+        const { nom, prenom, email } = req.body;
 
+        // Vérification simple côté serveur
+        if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+            return res.status(400).json({ error: "Email invalide" });
+        }
+
+        const user = await User.create({ nom, prenom, email });
         res.json(user);
-    } catch (err) {
+
+    } catch (err: any) {
+
+        // Erreur email déjà existant
+        if (err.name === "SequelizeUniqueConstraintError") {
+            return res.status(400).json({ error: "Cet email existe déjà" });
+        }
+
+        // Erreur format email Sequelize
+        if (err.name === "SequelizeValidationError") {
+            return res.status(400).json({ error: "Format email incorrect" });
+        }
+
         res.status(500).json({ error: err.message });
     }
 });
+
 
 // DELETE /api/users/:id → supprime un utilisateur
 router.delete('/:id', async (req, res) => {

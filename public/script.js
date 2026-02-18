@@ -3,6 +3,8 @@ const userList = document.getElementById("userList");
 const userForm = document.getElementById("userForm");
 const firstNameInput = document.getElementById("firstName");
 const lastNameInput = document.getElementById("lastName");
+const emailInput = document.getElementById("email");
+
 
 // Fonction pour charger et afficher les utilisateurs
 async function loadUsers() {
@@ -15,7 +17,7 @@ async function loadUsers() {
         const li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
 
-        li.textContent = `${user.prenom} ${user.nom}`;
+        li.textContent = `${user.prenom} ${user.nom} ${user.email}`;
 
         // bouton X
         const btn = document.createElement("button");
@@ -36,16 +38,32 @@ async function loadUsers() {
 userForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const email = emailInput.value;
+
+    // vérif email valide
+    if (!/^\S+@\S+\.\S+$/.test(email)) { 
+        alert("Email invalide"); return; 
+    }
+
     const newUser = {
         prenom: firstNameInput.value,
-        nom: lastNameInput.value }; 
+        nom: lastNameInput.value,
+        email: emailInput.value 
+    }; 
         
     const res = await fetch("/api/users", { 
         method: "POST", 
         headers: { "Content-Type": "application/json" }, 
         body: JSON.stringify(newUser) }); 
+    
+    //affiche l'erreur
+    if(!res.ok){
+        alert(data.error);
+        return;
+    }
+
     if (res.ok) { 
         await loadUsers(); // rafraîchir la liste 
         userForm.reset(); // vider le formulaire 
-        } }); // Charger les utilisateurs au démarrage 
-    loadUsers();
+        } }); 
+    loadUsers(); //charge les utilisateurs au démarage
