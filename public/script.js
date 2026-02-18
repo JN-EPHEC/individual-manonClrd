@@ -6,7 +6,7 @@ const lastNameInput = document.getElementById("lastName");
 const emailInput = document.getElementById("email");
 
 
-// Fonction pour charger et afficher les utilisateurs
+// charger et afficher les utilisateurs
 async function loadUsers() {
     const res = await fetch("/api/users");
     const users = await res.json();
@@ -34,7 +34,7 @@ async function loadUsers() {
     });
 }
 
-// Soumission du formulaire → POST
+// Soumission du formulaire avec POST
 userForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -42,7 +42,8 @@ userForm.addEventListener("submit", async (e) => {
 
     // vérif email valide
     if (!/^\S+@\S+\.\S+$/.test(email)) { 
-        alert("Email invalide"); return; 
+        alert("Email invalide"); 
+        return; 
     }
 
     const newUser = {
@@ -55,6 +56,8 @@ userForm.addEventListener("submit", async (e) => {
         method: "POST", 
         headers: { "Content-Type": "application/json" }, 
         body: JSON.stringify(newUser) }); 
+
+    const data = await res.json();
     
     //affiche l'erreur
     if(!res.ok){
@@ -66,4 +69,4 @@ userForm.addEventListener("submit", async (e) => {
         await loadUsers(); // rafraîchir la liste 
         userForm.reset(); // vider le formulaire 
         } }); 
-    loadUsers(); //charge les utilisateurs au démarage
+loadUsers(); //charge les utilisateurs au démarage

@@ -8,3 +8,4 @@ const sequelize = new Sequelize({
 
 export default sequelize;
 
+//config sequelize

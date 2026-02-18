@@ -3,7 +3,7 @@ import User from '../models/User';
 
 const router = Router();
 
-// GET /api/users → renvoie tous les utilisateurs
+// retourne tous les utilisateurs
 router.get('/', async (req, res) => {
     try {
         const users = await User.findAll();
@@ -13,12 +13,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST /api/users → ajoute un utilisateur
+// ajoute un utilisateur avec POST
 router.post('/', async (req, res) => {
     try {
         const { nom, prenom, email } = req.body;
 
-        // Vérification simple côté serveur
+        // Vérification format email
         if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
             return res.status(400).json({ error: "Email invalide" });
         }
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
 });
 
 
-// DELETE /api/users/:id → supprime un utilisateur
+// supprime un utilisateur
 router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id;

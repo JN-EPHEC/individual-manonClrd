@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use(express.static('public'));  //tout ce qui est visible depuis le navigateur
+app.use(express.static('public'));  //public = tout ce qui est visible depuis le navigateur
 app.use('/api/users', userRouter);
 
 app.get('/', (req: Request, res: Response) => {

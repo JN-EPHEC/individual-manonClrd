@@ -3,6 +3,7 @@ import sequelize from '../config/database';
 
 class User extends Model {}
 
+//modele de User
 User.init(
   {
     nom: {
