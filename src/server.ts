@@ -1,8 +1,10 @@
-import express from 'express'; 
-import type { Request, Response } from 'express';
+import express from 'express';
+import type {Request, Response} from 'express';
+import { requestLogger } from'./middlewares/logger';
 import userRouter from './routes/userRoutes';
 import sequelize from './config/database';
 import './models/User';  //charge mon model 
+
 
 
 const app = express();
@@ -10,6 +12,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.static('public'));  //public = tout ce qui est visible depuis le navigateur
+app.use(requestLogger);
 app.use('/api/users', userRouter);
 
 app.get('/', (req: Request, res: Response) => {
