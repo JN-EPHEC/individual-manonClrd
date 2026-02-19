@@ -5,12 +5,15 @@ import userRouter from './routes/userRoutes';
 import sequelize from './config/database';
 import './models/User';  //charge mon model 
 import { errorHandler } from './middlewares/errorHandler';
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger";
 
 
 
 const app = express();
 const port = 3000;
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(express.json());
 app.use(express.static('public'));  //public = tout ce qui est visible depuis le navigateur
 app.use(requestLogger);

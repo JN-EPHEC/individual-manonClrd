@@ -6,6 +6,17 @@ import * as userController from "../controllers/userController";
 const router = Router();
 
 // retourne tous les utilisateurs
+
+/**
+ * @swagger
+ * /api/users:
+ *  get:
+ *      summary: Récupère la liste des utilisateurs
+ *      tags: [Users]
+ *      responses:
+ *          200:
+ *             description: Succès
+ */
 router.get("/", userController.getAllUsers);
 
 // ajoute un utilisateur avec POST
@@ -49,7 +60,7 @@ router.delete('/:id', async (req, res) => {
         }
 
         res.json({ message: "Utilisateur supprimé" });
-    } catch (err) {
+    } catch (err:any) {
         res.status(500).json({ error: err.message });
     }
 });
