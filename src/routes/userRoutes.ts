@@ -1,17 +1,12 @@
 import { Router } from 'express';
 import User from '../models/User';
+import * as userController from "../controllers/userController";
+
 
 const router = Router();
 
 // retourne tous les utilisateurs
-router.get('/', async (req, res) => {
-    try {
-        const users = await User.findAll();
-        res.json(users);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
+router.get("/", userController.getAllUsers);
 
 // ajoute un utilisateur avec POST
 router.post('/', async (req, res) => {
