@@ -4,6 +4,7 @@ import { requestLogger } from'./middlewares/logger';
 import userRouter from './routes/userRoutes';
 import sequelize from './config/database';
 import './models/User';  //charge mon model 
+import { errorHandler } from './middlewares/errorHandler';
 
 
 
@@ -19,27 +20,6 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Bienvenue sur mon serveur API');
 });
 
-//connexion et synchro de la DB
-async function startServer() {
-    try {
-        await sequelize.authenticate();
-        console.log('Connexion OK');
-
-        await sequelize.sync({ alter: true });
-        console.log('DB synchronisée');                                                
-
-        app.listen(port, () => {                                                       
-            console.log(`Serveur lancé sur http://localhost:${port}`);
-        });
-
-    } catch (error) {
-        console.error('Erreur lors du démarrage :', error);
-    }
-    console.log(await sequelize.getQueryInterface().showAllTables());
-
-}
-
-startServer();
 
 // dit bonjour 
 function greet(name: string): string {
@@ -74,5 +54,28 @@ app.get('/api/hello/:name', (req: Request, res: Response) => {
     res.json(response);
 });
 
+// erreur générale
+app.use(errorHandler);
 
+//connexion et synchro de la DB
+async function startServer() {
+    try {
+        await sequelize.authenticate();
+        console.log('Connexion OK');
+
+        await sequelize.sync({ alter: true });
+        console.log('DB synchronisée');                                                
+
+        app.listen(port, () => {                                                       
+            console.log(`Serveur lancé sur http://localhost:${port}`);
+        });
+
+    } catch (error) {
+        console.error('Erreur lors du démarrage :', error);
+    }
+    console.log(await sequelize.getQueryInterface().showAllTables());
+
+}
+
+startServer();
     
