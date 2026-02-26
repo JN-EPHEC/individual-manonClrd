@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import User from '../models/User';
 import * as userController from "../controllers/userController";
+import { checkIdParam } from "../middlewares/checkIdParam";
 
 
 const router = Router();
@@ -24,8 +24,8 @@ router.get("/", userController.getAllUsers);
 // ajoute utilisateur avec POST
 router.post('/', userController.createUser);
 
-
 // supprime utilisateur
-router.delete('/:id', userController.deleteUser);
+router.delete("/:id", checkIdParam, userController.deleteUser);
+
 
 export default router;
