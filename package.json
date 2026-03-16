@@ -8,7 +8,7 @@
     "setup": "npm install --prefix server && npm install --prefix client",
     "start:server": "npm run dev --prefix server",
     "start:client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "dev": "concurrently \"npm: start:server\" \"npm: start:client\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
