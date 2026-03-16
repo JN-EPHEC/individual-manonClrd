@@ -1,6 +1,11 @@
+
 {
   "development": {
-    "env_url": "DATABASE_URL",
+    "username": "postgres",
+    "password": "projetdev3!",
+    "database": "postgres",
+    "host": "db.jtggeqdrowzmsedrbhnt.supabase.co",
+    "port": 5432,    
     "dialect": "postgres",
     "dialectOptions": {
     "ssl": {
@@ -9,7 +14,11 @@
   }}
   },
   "test": {
-    "env_url": "DATABASE_URL",
+    "username": "postgres",
+    "password": "projetdev3!",
+    "database": "postgres",
+    "host": "db.jtggeqdrowzmsedrbhnt.supabase.co",
+    "port": 5432,
     "dialect": "postgres",
     "dialectOptions": {
     "ssl": {
@@ -17,7 +26,11 @@
       "rejectUnauthorized": false
   }}},
   "production": {
-    "env_url": "DATABASE_URL",
+    "username": "postgres",
+    "password": "projetdev3!",
+    "database": "postgres",
+    "host": "db.jtggeqdrowzmsedrbhnt.supabase.co",
+    "port": 5432,
     "dialect": "postgres",
     "dialectOptions": {
     "ssl": {

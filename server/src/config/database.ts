@@ -1,3 +1,5 @@
+
+
 const sequelize = process.env.DATABASE_URL
     ? new Sequelize(process.env.DATABASE_URL, {
         dialect: "postgres",
