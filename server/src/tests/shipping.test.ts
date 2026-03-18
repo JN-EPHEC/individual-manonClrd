@@ -1,4 +1,7 @@
-/*import { calculateShipping } from ""
+
+
+
+import { calculateShipping } from "../utils/shipping"
 
 
 const distanceCases = [
@@ -33,7 +36,11 @@ const distanceCases = [
 describe("Shipping Calculator - Tests Fonctionnels", () => {
   test.each(distanceCases)(
     "Distance %d, Poids %d, Type %s → %s (%s)",
-    (distance, weight, type, expected, description) => {
+    (distance: number,
+       weight: number,
+       type: "standard" | "express", 
+       expected: number | "Error", 
+       description: string) => {
       if (expected === "Error") {
         expect(() => calculateShipping(distance, weight, type)).toThrow();
       } else {
@@ -41,4 +48,4 @@ describe("Shipping Calculator - Tests Fonctionnels", () => {
       }
     }
   );
-});*/
+});
