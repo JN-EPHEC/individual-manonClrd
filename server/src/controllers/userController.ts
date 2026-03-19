@@ -13,16 +13,16 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 //ajoute un utilisateur + vérif email correct
-export const createUser = async (req: Request, res: Response) => {
+/*export const createUser = async (req: Request, res: Response) => {
     try {
-        const { nom, prenom, email } = req.body;
+        const { firstname, lastname, email } = req.body;
 
         // Vérification format email
         if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
             return res.status(400).json({ error: "Email invalide" });
         }
 
-        const user = await User.create({ nom, prenom, email });
+        const user = await User.create({ firstname, lastname, email });
         res.json(user);
 
     } catch (err: any) {
@@ -40,7 +40,7 @@ export const createUser = async (req: Request, res: Response) => {
         res.status(500).json({ error: err.message });
     }
 };
-
+*/
 // supprime un utilisateur
 export const deleteUser = async (req: Request, res: Response) => {
     try {

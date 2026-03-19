@@ -5,7 +5,7 @@
     "password": "projetdev3!",
     "database": "postgres",
     "host": "aws-1-eu-central-1.pooler.supabase.com",
-    "port": 5432,    
+    "port": 6543,    
     "dialect": "postgres",
     "dialectOptions": {
     "ssl": {
@@ -38,3 +38,4 @@
       "rejectUnauthorized": false
   }}}
 }
+

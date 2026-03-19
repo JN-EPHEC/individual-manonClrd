@@ -8,7 +8,7 @@
     "setup": "npm install --prefix server && npm install --prefix client",
     "start:server": "npm run dev --prefix server",
     "start:client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm: start:server\" \"npm: start:client\"",
+    "dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -30,8 +30,15 @@
     "@types/supertest": "^7.2.0",
     "concurrently": "^9.2.1",
     "jest": "^30.2.0",
+    "sequelize-cli": "^6.6.5",
     "supertest": "^7.2.2",
     "ts-jest": "^29.4.6",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "pg": "^8.20.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.8"
   }
 }

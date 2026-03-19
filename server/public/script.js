@@ -17,7 +17,7 @@ async function loadUsers() {
         const li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
 
-        li.textContent = `${user.prenom} ${user.nom} ${user.email}`;
+        li.textContent = `${user.firstname} ${user.lastname} ${user.email}`;
 
         // bouton X
         const btn = document.createElement("button");
@@ -47,8 +47,8 @@ userForm.addEventListener("submit", async (e) => {
     }
 
     const newUser = {
-        prenom: firstNameInput.value,
-        nom: lastNameInput.value,
+        firstname: firstNameInput.value,
+        lestname: lastNameInput.value,
         email: emailInput.value 
     }; 
         
