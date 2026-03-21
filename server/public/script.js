@@ -48,7 +48,7 @@ userForm.addEventListener("submit", async (e) => {
 
     const newUser = {
         firstname: firstNameInput.value,
-        lestname: lastNameInput.value,
+        lastname: lastNameInput.value,
         email: emailInput.value 
     }; 
         

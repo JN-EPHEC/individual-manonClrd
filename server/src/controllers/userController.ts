@@ -13,7 +13,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 //ajoute un utilisateur + vérif email correct
-/*export const createUser = async (req: Request, res: Response) => {
+export const createUser = async (req: Request, res: Response) => {
     try {
         const { firstname, lastname, email } = req.body;
 
@@ -40,7 +40,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
         res.status(500).json({ error: err.message });
     }
 };
-*/
+
 // supprime un utilisateur
 export const deleteUser = async (req: Request, res: Response) => {
     try {
