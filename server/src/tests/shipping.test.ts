@@ -4,7 +4,13 @@
 import { calculateShipping } from "../utils/shipping"
 
 
-const distanceCases = [
+const distanceCases : [
+  number,
+  number,
+  "standard" | "express",
+  number | "Error",
+  string
+][] = [
   // [dist, poids, type, attendu, description]
   [0, 5, "standard", 10, "Distance 0 km"],
   [1, 5, "standard", 10, "Distance 1 km"],
@@ -34,7 +40,9 @@ const distanceCases = [
 
 
 describe("Shipping Calculator - Tests Fonctionnels", () => {
-  test.each(distanceCases)(
+  test.each<
+  [number, number, "standard" | "express", number | "Error", string]
+>(distanceCases)(
     "Distance %d, Poids %d, Type %s → %s (%s)",
     (distance: number,
        weight: number,

@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 
 export const checkIdParam = (req: Request, res: Response, next: NextFunction) => {
-    const { id } = req.params;
+    const  id  = String(req.params);
 
     // Vérification de l'ID
     if (!/^\d+$/.test(id)) {
