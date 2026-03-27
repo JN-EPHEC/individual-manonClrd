@@ -18,6 +18,30 @@ const router = Router();
  *             description: Succès
  */
 
+/**
+ * @swagger
+ * /api/users:
+ *   post:
+ *     summary: Crée un nouvel utilisateur
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               prenom:
+ *                 type: string
+ *               nom:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Utilisateur créé
+ *       400:
+ *         description: Champs manquants
+ */
+
 // récupère tous les utilisateurs
 router.get("/", userController.getAllUsers);
 

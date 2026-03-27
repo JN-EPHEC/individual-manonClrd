@@ -1,7 +1,7 @@
-FROM node:18-alpine
+FROM node:20-alpine
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install
+RUN npm install --production
 COPY . .
 # On compile le TypeScript en JavaScript
 RUN npm run build
