@@ -12,6 +12,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
     }
 };
 
+
 //ajoute un utilisateur + vérif email correct
 export const createUser = async (req: Request, res: Response) => {
     try {
