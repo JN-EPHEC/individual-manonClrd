@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "start": "node dist/server.ts",
+    "start": "node dist/server.js",
     "dev": "node server.js",
     "db:migrate": "sequelize-cli db:migrate",
     "test:watch": "jest --watch",

@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from '../config/database.js';
+
+
 const User = sequelize.define('User', {
     // Model attributes are defined here
     firstname: {
@@ -17,6 +19,7 @@ const User = sequelize.define('User', {
 }, {
 // Other model options go here
 });
+
 export default User;
 console.log(User === sequelize.models.User);
 //# sourceMappingURL=User.js.map

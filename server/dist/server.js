@@ -1,11 +1,12 @@
 import express from 'express';
-import { requestLogger } from './middlewares/logger';
-import userRouter from './routes/userRoutes';
-import sequelize from './config/database';
-import './models/User'; //charge mon model 
-import { errorHandler } from './middlewares/errorHandler';
+import { requestLogger } from './middlewares/logger.js';
+import userRouter from './routes/userRoutes.js';
+import sequelize from './config/database.js';
+import './models/User.js'; 
+//charge mon model 
+import { errorHandler } from './middlewares/errorHandler.js';
 import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "./config/swagger";
+import { swaggerSpec } from "./config/swagger.js";
 import cors from "cors";
 const app = express();
 const port = 3000;
@@ -49,8 +50,8 @@ async function startServer() {
         console.log('Connexion OK');
         await sequelize.sync({ alter: true });
         console.log('DB synchronisée');
-        app.listen(port, () => {
-            console.log(`Serveur lancé sur http://localhost:${port}`);
+        app.listen(port, '0.0.0.0', () => {
+            console.log(`Serveur lancé sur http://0.0.0.0:${port}`);
         });
     }
     catch (error) {

@@ -9,4 +9,4 @@ ENV PORT=3000
 # Très important !
 EXPOSE 3000 
 # Très important !
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/server.d.ts"]
